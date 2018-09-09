@@ -7,16 +7,34 @@ class App extends Component {
     super(props);
     this.state = {
       points: 1000,
+      time: 0,
+      currentBlock: '',
     };
+    this.blocks = ['l', 'j', 't', 'i', 'o', 's', 'z'];
+  }
+
+  componentDidMount() {
+    this.generateRandomBlock();
+    this.startTimer();
+  }
+
+  generateRandomBlock = () => {
+    const currentBlock = this.blocks[Math.floor(Math.random() * this.blocks.length)];
+    this.setState({ currentBlock });
+  }
+
+  startTimer = () => {
+    setInterval(() => this.setState(state => ({ time: state.time + 1 })), 1000);
   }
 
   render() {
-    const { points } = this.state;
+    const { currentBlock, time } = this.state;
     return (
       <div>
         <Grid size={10} />
         <Blocks />
-        <p>{points}</p>
+        <p>{currentBlock}</p>
+        <p>{time}</p>
       </div>
     );
   }

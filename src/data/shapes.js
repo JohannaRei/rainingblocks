@@ -162,6 +162,72 @@ const shapes = {
       ],
     },
   },
+  s: {
+    color: 'yellow',
+    top: {
+      id: 'st',
+      matrix: [
+        [0, 1, 1],
+        [1, 1, 0],
+      ],
+    },
+    right: {
+      id: 'sr',
+      matrix: [
+        [1, 0],
+        [1, 1],
+        [0, 1],
+      ],
+    },
+    left: {
+      id: 'sl',
+      matrix: [
+        [1, 0],
+        [1, 1],
+        [0, 1],
+      ],
+    },
+    bottom: {
+      id: 'sb',
+      matrix: [
+        [0, 1, 1],
+        [1, 1, 0],
+      ],
+    },
+  },
+  z: {
+    color: 'grey',
+    top: {
+      id: 'zt',
+      matrix: [
+        [1, 1, 0],
+        [0, 1, 1],
+      ],
+    },
+    right: {
+      id: 'zr',
+      matrix: [
+        [0, 1],
+        [1, 1],
+        [1, 0],
+      ],
+    },
+    left: {
+      id: 'zl',
+      matrix: [
+        [0, 1],
+        [1, 1],
+        [1, 0],
+      ],
+    },
+    bottom: {
+      id: 'zb',
+      matrix: [
+        [1, 1, 0],
+        [0, 1, 1],
+      ],
+    },
+  },
 };
 
 export default shapes;

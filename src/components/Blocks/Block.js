@@ -3,47 +3,56 @@ import PropTypes from 'prop-types';
 import shapes from '../../data/shapes';
 
 class Block extends Component {
-  renderBlock = () => {
-    const { type, orientation } = this.props;
-    const { matrix } = shapes[type][orientation];
-    const { color } = shapes[type];
-
-    return (
-      <table>
-        <tbody>
-          {this.renderRow(matrix, color)}
-        </tbody>
-      </table>
-    );
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: '',
+      matrix: [],
+      color: '',
+    };
   }
 
-  renderRow = (matrix, color) => {
+  componentWillMount() {
     const { type, orientation } = this.props;
+    const id = Math.floor(Math.random() * 1000);
+    this.setState({
+      matrix: shapes[type][orientation].matrix,
+      color: shapes[type].color,
+      id,
+    });
+  }
 
-    return matrix.map(item => (
-      <tr key={`${type}-${orientation}-row`}>
-        {item.map((item2) => {
-          if (item2 !== 0) {
-            return (
-              <td
-                key={`${type}-${orientation}-${item}`}
-                style={{ ...styles.block, ...styles[color] }}
-              >
-                {' '}
-              </td>
-            );
-          }
-          return <td key={`${type}-${orientation}-${item}`}>{' '}</td>;
-        })}
-      </tr>
-    ));
+  renderBlock = () => {
+    const { matrix, color, id } = this.state;
+
+    return (
+      matrix.map(item => (
+        <tr key={`${id}-${Math.random()}`}>
+          {item.map((item2) => {
+            if (item2 !== 0) {
+              return (
+                <td
+                  key={`${id}-${Math.random()}`}
+                  style={{ ...styles.block, ...styles[color] }}
+                >
+                  {' '}
+                </td>
+              );
+            }
+            return <td key={`${id}-${Math.random()}`}>{' '}</td>;
+          })}
+        </tr>
+      ))
+    );
   }
 
   render() {
     return (
-      <div>
-        {this.renderBlock()}
-      </div>
+      <table>
+        <tbody>
+          {this.renderBlock()}
+        </tbody>
+      </table>
     );
   }
 }
@@ -70,6 +79,12 @@ const styles = {
   },
   purple: {
     backgroundColor: 'purple',
+  },
+  yellow: {
+    backgroundColor: 'yellow',
+  },
+  grey: {
+    backgroundColor: 'grey',
   },
 };
 
